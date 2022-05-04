@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string.h>
+#include <clocale>
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+
+
+using namespace std;
+
+int bul(string alfabe,char b)
+{
+	setlocale(LC_ALL, "Turkish");
+	for(int i=0;i<alfabe.length();i++)
+	{
+		if(b==alfabe[i])
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+int main(int argc, char** argv) 
+{
+	setlocale(LC_ALL, "Turkish");
+	     string alfabe="ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ";	
+	string alfabe_ters="ZYVÜUTŞSRPÖONMLKJİIHĞGFEDÇCBA";		
+	string metin;
+        //ABT{TEBRİKLER_İYİ_İŞ_BAŞARDIN}
+	
+	int indis;
+	cout<<"Metin girin:";
+	getline(cin,metin);
+	
+	//ŞİFRELEME
+	for(int i=0; i<metin.length();i++)
+	{
+		indis = bul(alfabe,metin[i]);
+		if(indis!=-1)
+			metin[i]=alfabe_ters[indis];
+	}
+
+	cout<<endl<<"sifrelenmis hali:"<<metin;
+	
+	//ÇÖZME
+	for(int i=0; i<metin.length();i++)
+	{
+		indis = bul(alfabe_ters,metin[i]);
+		if(indis!=-1)
+			metin[i]=alfabe[indis];
+	}
+
+	cout<<endl<<"cozulmus hali:"<<metin;
+	
+	return 0;
+}
